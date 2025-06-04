@@ -8,12 +8,13 @@ const ProductListingPage = () => {
   const [error, setError] = useState(null);
 
   const { fetchInventory } = useInventory();
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/products");
+        const response = await fetch(`${API_BASE_URL}/api/products`);
 
         if (!response.ok) throw new Error("Failed to fetch products");
         const data = await response.json();

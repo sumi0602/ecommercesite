@@ -10,12 +10,12 @@ const InventoryContext = createContext();
 
 export const InventoryProvider = ({ children }) => {
   const [inventory, setInventory] = useState({});
-
+ const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   // Memoize fetchInventory so it is stable between renders
   const fetchInventory = useCallback(async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/inventory/${productId}`
+        `${API_BASE_URL}/api/inventory/${productId}`
       );
       console.log(response.json);
       const data = await response.json();

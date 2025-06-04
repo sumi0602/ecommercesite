@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const CheckoutForm = ({ cartItems, onTransactionComplete }) => {
   const [customerInfo, setCustomerInfo] = useState({
@@ -50,7 +51,7 @@ const CheckoutForm = ({ cartItems, onTransactionComplete }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/checkout", {
+      const response = await fetch(`${API_BASE_URL}/api/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
